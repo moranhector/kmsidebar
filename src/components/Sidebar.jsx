@@ -6,7 +6,11 @@ import {
     FaRegChartBar,
     FaCommentAlt,
     FaShoppingBag,
-    FaThList
+    FaThList,
+    FaListOl,
+    FaCompactDisc,
+    FaMusic,
+    FaVideo
 }from "react-icons/fa";
 import { NavLink } from 'react-router-dom';
 import '../App.css';
@@ -22,36 +26,36 @@ const Sidebar = ({children}) => {
             icon:<FaTh/>
         },
         {
-            path:"/about",
-            name:"About",
+            path:"/artistas",
+            name:"Artistas",
             icon:<FaUserAlt/>
         },
         {
-            path:"/analytics",
-            name:"Analytics",
-            icon:<FaRegChartBar/>
+            path:"/albumes",
+            name:"Albumes",
+            icon:<FaCompactDisc/>
         },
         {
-            path:"/comment",
-            name:"Comment",
-            icon:<FaCommentAlt/>
+            path:"/canciones",
+            name:"Canciones",
+            icon:<FaMusic/>
         },
         {
-            path:"/product",
-            name:"Product",
-            icon:<FaShoppingBag/>
+            path:"/videos",
+            name:"Videos",
+            icon:<FaVideo/>
         },
         {
-            path:"/productList",
-            name:"Product List",
-            icon:<FaThList/>
+            path:"/rankings",
+            name:"Rankings",
+            icon:<FaListOl/>
         }
     ]
     return (
         <div className="container myCustomFont">
            <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
                <div className="top_section">
-                   <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Logo</h1>
+                   <h1 style={{display: isOpen ? "block" : "none"}} className="logo">Killer Music</h1>
                    <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="bars">
                        <FaBars onClick={toggle}/>
                    </div>
