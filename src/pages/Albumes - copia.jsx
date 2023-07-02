@@ -1,12 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import '../App.css';
-//import 'bootstrap/dist/css/bootstrap.min.css';
-//import { Button } from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, InputGroup, FormControl, Button, Row, Card } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-// import AlbumScreen from './Screen/AlbumScreen';
 
 const CLIENT_ID = '194e1f971c73499ca3e70d29189aae94'
 const CLIENT_SECRET = 'f092a8aaf35f4fe293c0b7a8b0f9532c'
@@ -60,10 +56,7 @@ const Albumes = () => {
                 return data.artists.items[0].id
             }
             )
-        //.then(data => console.log( 'ARTISTA:', data ))
 
-        //console.log("Artist ID is " + artistID);
-        //
 
 
 
@@ -83,53 +76,62 @@ const Albumes = () => {
 
         }
 
-        return (
-            <div className="App">
-    
-                <header className="App-header">
-                    <h1>KILLER MUSIC V0702</h1>
-                </header>
-    
-                <Container>
-                    <InputGroup className="mb-3" size="lg">
-                        <FormControl
-                            placeholder="Artista:"
-                            type="input"
-                            onKeyPress={event => {
-                                if (event.key === "Enter") {
-                                    Search();
-                                }
-                            }}
-                            onChange={event => { setSearchInput(event.target.value) }}
-                        />
-                        <Button onClick={Search}>
-                            Buscar
-                        </Button>
-    
-                    </InputGroup>
-                </Container>
-                <Container>
-                    <Row className="mx-2 row row-cols-4">
-                        {albums.map((album, i) => {
-                            //console.log(album);
-                            return (
-                                <Card>
-                                    <Card.Img src={album.images[0].url} />
-                                    <Card.Body>
-                                        <Card.Title>{artista.name}</Card.Title>
-                                        <Card.Title>{album.name}</Card.Title>
-                                        <Link to={`/second/${encodeURIComponent(album.id)}/${encodeURIComponent(accessToken)}`}>Ver Canciones</Link>
-                                    </Card.Body>
-                                </Card>
-                                )
-    
-                        })}
-                    </Row>
-                </Container>
-    
-            </div>
-        );
+    return (
+        <div>
+            <h1>Albumes page</h1>
 
+
+
+
+
+
+             
+                <InputGroup>
+                    <FormControl
+                        placeholder="Artista:"
+                        type="input"
+                        onKeyPress={event => {
+                            if (event.key === "Enter") {
+                                Search();
+                            }
+                        }}
+                        onChange={event => { setSearchInput(event.target.value) }}
+                    />
+                    <Button onClick={Search}>
+                        Buscar
+                    </Button>
+
+                </InputGroup>
+            
+            
+                <Row>
+                    {albums.map((album, i) => {
+                        //console.log(album);
+                        return (
+                            <Card>
+                                <Card.Img src={album.images[0].url} />
+                                <Card.Body>
+                                    <Card.Title>{artista.name}</Card.Title>
+                                    <Card.Title>{album.name}</Card.Title>
+                                    <Link to={`/second/${encodeURIComponent(album.id)}/${encodeURIComponent(accessToken)}`}>Ver Canciones</Link>
+                                </Card.Body>
+                            </Card>
+                            )
+
+                    })}
+                </Row>
+             
+
+       
+
+
+
+
+
+
+
+        </div>
+    );
 };
 
 export default Albumes;
