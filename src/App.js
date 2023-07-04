@@ -8,6 +8,7 @@ import Albumes from './pages/Albumes.jsx';
 import Canciones from './pages/Canciones.jsx';
 import Videos from './pages/Videos.jsx';
 import Rankings from './pages/Rankings.jsx';
+import Create from './pages/Create.jsx';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/albumes" element={<Albumes />} />
           <Route path="/videos" element={<Videos />} />
           <Route path="/rankings" element={<Rankings />} />
+          <Route path="/create/:param1/:param2" element={<Create />} />          
         </Routes>
       </Sidebar>
     </BrowserRouter>
