@@ -12,8 +12,11 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 
-const CLIENT_ID = '194e1f971c73499ca3e70d29189aae94';
-const CLIENT_SECRET = 'f092a8aaf35f4fe293c0b7a8b0f9532c';
+
+
+const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
+const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
+
 
 const Albumes = () => {
   const [searchInput, setSearchInput] = useState('');
@@ -58,7 +61,7 @@ const Albumes = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        setArtists(data.artists.items.slice(0, 5));
+        setArtists(data.artists.items.slice(0, 20));
         console.log('Estos son los artistas encontrados:', data);
       });
   }
