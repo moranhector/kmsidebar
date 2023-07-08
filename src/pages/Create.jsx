@@ -3,6 +3,10 @@ import { useParams } from 'react-router-dom';
 import { Container, Row, Col, Card, Table } from 'react-bootstrap';
 import { BsPlayFill } from "react-icons/bs";
 import axios from 'axios';
+import AlbumCard from '../components/AlbumCard';
+ 
+
+
 axios.defaults.baseURL = 'http://localhost:8000'; // Establece la base URL a tu backend en el puerto 8000
 
 
@@ -82,14 +86,10 @@ function Create() {
     <Container>
       <Row className="mt-3">
         <Col>
-          <Card>
-            <Card.Img variant="top" src={tapaAlbum} />
-            <Card.Body>
-              <Card.Title>Álbum</Card.Title>
-            </Card.Body>
-          </Card>
+          <AlbumCard tapaAlbum={tapaAlbum} />
         </Col>
       </Row>
+
       <Row className="mt-3">
         <Col>
           <h2>Lista de canciones</h2>
