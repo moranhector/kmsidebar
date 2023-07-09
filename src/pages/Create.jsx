@@ -4,6 +4,9 @@ import { Container, Row, Col, Card, Table } from 'react-bootstrap';
 import { BsPlayFill } from "react-icons/bs";
 import axios from 'axios';
 import AlbumCard from '../components/AlbumCard';
+//REDUX
+import { useSelector, useDispatch } from 'react-redux';
+
  
 
 
@@ -18,6 +21,12 @@ function Create() {
 
   const [tapaAlbum, setTapaAlbum] = useState("");
   const [tracks, setTracks] = useState([]);
+
+
+
+
+
+  
 
 
   useEffect(() => {

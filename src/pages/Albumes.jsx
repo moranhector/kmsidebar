@@ -11,6 +11,8 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+//REDUX
+import { useSelector, useDispatch } from 'react-redux';
 
 
 
@@ -20,13 +22,20 @@ const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET;
 
 const Albumes = () => {
     const [searchInput, setSearchInput] = useState('');
-    const [accessToken, setAccessToken] = useState('');
     const [artists, setArtists] = useState([]);
     const [selectedArtist, setSelectedArtist] = useState(null);
     const [albums, setAlbums] = useState([]);
+    const accessToken = useSelector((state) => state.spotifyToken);
+
+    //REDUX
+    const dispatch = useDispatch();
+    // Ejemplo de cómo actualizar el token de Spotify
+    // dispatch({ type: 'SET_SPOTIFY_TOKEN', payload: 'tu_token_aqui' });
+
+
+    // Resto del código...
 
     useEffect(() => {
-        // API Acces Token
         var authParameters = {
             method: 'POST',
             headers: {
@@ -40,11 +49,39 @@ const Albumes = () => {
         };
         fetch('https://accounts.spotify.com/api/token', authParameters)
             .then((result) => result.json())
-            .then((data) => setAccessToken(data.access_token));
-    }, []);
+            .then((data) => {
+                dispatch({ type: 'SET_SPOTIFY_TOKEN', payload: data.access_token });
+            });
+    }, [dispatch]);
+
+    // Resto del código...
+
+
+
+    // useEffect(() => {
+    //     // API Acces Token
+    //     var authParameters = {
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded',
+    //         },
+    //         body:
+    //             'grant_type=client_credentials&client_id=' +
+    //             CLIENT_ID +
+    //             '&client_secret=' +
+    //             CLIENT_SECRET,
+    //     };
+    //     fetch('https://accounts.spotify.com/api/token', authParameters)
+    //         .then((result) => result.json())
+    //         .then((data) => setAccessToken(data.access_token));
+    // }, []);
 
     async function searchArtists() {
         console.log('Buscando ...', searchInput);
+
+
+
+
 
         // Get request using search to get the Artists
         var searchParameters = {
@@ -72,6 +109,7 @@ const Albumes = () => {
     }
 
     async function fetchArtistAlbums(artistId) {
+
         var searchParameters = {
             method: 'GET',
             headers: {
