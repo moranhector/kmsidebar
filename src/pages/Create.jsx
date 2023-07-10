@@ -7,12 +7,9 @@ import AlbumCard from '../components/AlbumCard';
 //REDUX
 import { useSelector, useDispatch } from 'react-redux';
 
- 
-
+import { convertMsToMinutesAndSeconds } from '../funciones/funciones.js';
 
 axios.defaults.baseURL = 'http://localhost:8000'; // Establece la base URL a tu backend en el puerto 8000
-
-
 
 function Create() {
   const { param1, param2 } = useParams();
@@ -21,13 +18,7 @@ function Create() {
 
   const [tapaAlbum, setTapaAlbum] = useState("");
   const [tracks, setTracks] = useState([]);
-
-
-
-
-
-  
-
+  const accessToken = useSelector((state) => state.spotifyToken);
 
   useEffect(() => {
     const searchParameters = {
@@ -81,15 +72,6 @@ function Create() {
   }, [param1, param2]);
 
 
-  // const convertMsToSeconds = (durationMs) => {
-  //   return Math.floor(durationMs / 1000);
-  // };
-
-  const convertMsToMinutesAndSeconds = (durationMs) => {
-    const minutes = Math.floor(durationMs / 60000);
-    const seconds = ((durationMs % 60000) / 1000).toFixed(0);
-    return `${minutes}:${(seconds < 10 ? '0' : '')}${seconds}`;
-  };
 
   return (
     <Container>
